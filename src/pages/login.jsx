@@ -13,28 +13,28 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = {
     form: {
         textAlign: 'center'
-    },
-    image: {
+      },
+      image: {
         margin: '10px auto 10px auto'
-    },
-    pageTitle: {
+      },
+      pageTitle: {
         margin: '10px auto 10px auto'
-    },
-    textField: {
+      },
+      textField: {
         margin: '10px auto 10px auto'
-    },
-    button: {
+      },
+      button: {
         marginTop: 20,
         position: 'relative'
-    },
-    customError: {
+      },
+      customError: {
         color: 'red',
         fontSize: '0.8rem',
         marginTop: 10
-    },
-    progress: {
+      },
+      progress: {
         position: 'absolute'
-    }
+      }
 }
 
 class login extends Component {
@@ -59,6 +59,7 @@ class login extends Component {
         axios.post('/login', userData)
             .then(res => {
                 console.log(res.data)
+                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
                 this.setState({
                     loading: false
                 })
@@ -94,7 +95,7 @@ class login extends Component {
                         {errors.general && (<Typography variant='body2' className={classes.customError}>{errors.general}</Typography>)}
                         <Button type='submit' variant='contained' color='primary' className={classes.button} disabled={loading}>Login {loading && (<CircularProgress size={30} className={classes.progress} />)}</Button>
                         <br />
-                        <small>Don't have an account? Sign up <Link to='/signup'>here</Link></small>
+                        <small>Don't have an account? Signup <Link to='/signup'>here</Link></small>
                     </form>
                 </Grid>
                 <Grid item sm />
