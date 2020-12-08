@@ -12,6 +12,8 @@ import AuthRoute from './util/AuthRoute'
 import themeFile from './util/theme'
 import jwtDecode from 'jwt-decode'
 
+// const theme = createMuiTheme(themeFile)
+
 const theme = createMuiTheme(themeFile)
 
 let authenticated;
