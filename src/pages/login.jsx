@@ -39,9 +39,9 @@ class login extends Component {
         })
     }
     render() {
-        const { classes } = this.props
+        const { classes, UI: {loading} } = this.props
         // eslint-disable-next-line
-        const { errors, loading } = this.state
+        const { errors } = this.state
         return (
             <Grid container className={classes.form}>
                 <Grid item sm />
