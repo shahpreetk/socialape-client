@@ -3,7 +3,8 @@ import {
     SET_ERRORS,
     CLEAR_ERRORS,
     LOADING_UI,
-    SET_AUTHENTICATED
+    SET_AUTHENTICATED,
+    LOADING_USER
 } from '../types'
 import axios from 'axios'
 
@@ -16,13 +17,15 @@ export const loginUser = (userData, history) => (dispatch) => {
         .then(res => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData())
-            dispatch({type: CLEAR_ERRORS})
+            dispatch({
+                type: CLEAR_ERRORS
+            })
             history.push('/')
         })
         .catch(err => {
             dispatch({
                 type: SET_ERRORS,
-                payload : err.response.data
+                payload: err.response.data
             })
         })
 }
@@ -36,13 +39,15 @@ export const signupUser = (newUserData, history) => (dispatch) => {
         .then(res => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData())
-            dispatch({type: CLEAR_ERRORS})
+            dispatch({
+                type: CLEAR_ERRORS
+            })
             history.push('/')
         })
         .catch(err => {
             dispatch({
                 type: SET_ERRORS,
-                payload : err.response.data
+                payload: err.response.data
             })
         })
 }
@@ -50,18 +55,23 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
     delete axios.defaults.headers.common['Authorization']
-    dispatch({type: SET_AUTHENTICATED })
+    dispatch({
+        type: SET_AUTHENTICATED
+    })
 }
 
 export const getUserData = () => (dispatch) => {
-    axios.get('/user')
-    .then(res => {
-        dispatch({
-            type: SET_USER,
-            payload: res.data
-        })
+    dispatch({
+        type: LOADING_USER
     })
-    .catch(err => console.log(err))
+    axios.get('/user')
+        .then(res => {
+            dispatch({
+                type: SET_USER,
+                payload: res.data
+            })
+        })
+        .catch(err => console.log(err))
 }
 
 const setAuthorizationHeader = (token) => {
