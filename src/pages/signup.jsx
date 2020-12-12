@@ -51,7 +51,7 @@ class signup extends Component {
         })
     }
     render() {
-        const { classes, UI: {loading} } = this.props
+        const { classes, UI: { loading } } = this.props
         const { errors } = this.state
         return (
             <Grid container className={classes.form}>
