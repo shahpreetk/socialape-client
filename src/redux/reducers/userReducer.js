@@ -3,7 +3,7 @@ import {
     SET_AUTHENTICATED,
     SET_UNAUTHENTICATED,
     LOADING_USER
-} from '../types'
+} from '../types';
 
 const initialState = {
     authenticated: false,
@@ -11,10 +11,10 @@ const initialState = {
     credentials: {},
     likes: [],
     notifications: []
-}
+};
 
-export default function (state = initialState, action){
-    switch(action.type){
+export default function (state = initialState, action) {
+    switch (action.type) {
         case SET_AUTHENTICATED:
             return {
                 ...state,
@@ -32,7 +32,7 @@ export default function (state = initialState, action){
             return {
                 ...state,
                 loading: true
-            }
+            };
         default:
             return state;
     }
