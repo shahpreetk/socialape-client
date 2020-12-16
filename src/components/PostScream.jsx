@@ -53,7 +53,7 @@ class PostScream extends Component {
     this.setState({ open: true });
   };
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, errors: {} });
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
