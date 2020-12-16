@@ -38,11 +38,29 @@ class PostScream extends Component {
     body: "",
     errors: {},
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({
+        errors: nextProps.UI.errors,
+      });
+    }
+    if (!nextProps.UI.errors && !nextProps.UI.loading) {
+      this.setState({ body: "" });
+      this.handleClose();
+    }
+  }
   handleOpen = () => {
     this.setState({ open: true });
   };
   handleClose = () => {
     this.setState({ open: false });
+  };
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.postScream({ body: this.state.body });
   };
   render() {
     const { errors } = this.state;
@@ -78,7 +96,6 @@ class PostScream extends Component {
                 placeholder="Scream it out loud"
                 error={errors.body ? true : false}
                 helperText={errors.body}
-                className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
               />
