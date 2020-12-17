@@ -5,7 +5,7 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import jwtDecode from "jwt-decode";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import themeFile from "./util/theme";
 import AuthRoute from "./util/AuthRoute";
 
